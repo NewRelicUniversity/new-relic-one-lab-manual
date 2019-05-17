@@ -1,0 +1,84 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "New Relic One Lab Manual\n\n\nNew Relic One adds several new features, such as improved dashboards, a chart builder, and new APIs. These labs are designed to help you become familiar with these new features.", 
+            "title": "Introduction"
+        }, 
+        {
+            "location": "/#new-relic-one-lab-manual", 
+            "text": "New Relic One adds several new features, such as improved dashboards, a chart builder, and new APIs. These labs are designed to help you become familiar with these new features.", 
+            "title": "New Relic One Lab Manual"
+        }, 
+        {
+            "location": "/lab1-instructions/", 
+            "text": "Lab 1: Using the Tags API\n\n\nObjective\n\n\nUse the Tags API to add a tag to a New Relic Browser application.\n\n\nInstructions\n\n\n\n\nVisit the New Relic GraphQL API Explorer: \nhttps://api.newrelic.com/graphiql\n.\n\n\nSelect the training account\u2019s API key from the dropdown list near the top of the window.\n\n\nIn the left-hand pane, write an \nentitySearch\n query to find the \nguid\n of the Browser application named \u201cNew Relic Pet Clinic\u201d. \nHint (select text to reveal):\n \nYou are looking for an entity whose \nname\n is \nNew Relic Pet Clinic\n in the \ndomain\n of \nBROWSER\n.\n\n\nClick the \nExecute query\n button near the top of the window to execute your query. See the result in the right-hand pane.\n\n\nIf you get an error or do not see a \nguid\n in the result, return to Step 3 and try again. Otherwise, proceed to Step 6.\n\n\nWrite a \ntaggingAddTagsToEntity\n mutation, passing the \nguid\n returned above, and adding a \ntag\n with a key of \u201ctraining\u201d and a value of your name. \nHint:\n \nTag values are an array, so you must surround them with square brackets.\n\n\nExecute your mutation, ensuring that no errors are returned in the result.\n\n\nOptional:\n Write and execute an \nentity\n query to view the tags associated with the New Relic Pet Clinic Browser application.", 
+            "title": "Instructions"
+        }, 
+        {
+            "location": "/lab1-instructions/#lab-1-using-the-tags-api", 
+            "text": "", 
+            "title": "Lab 1: Using the Tags API"
+        }, 
+        {
+            "location": "/lab1-instructions/#objective", 
+            "text": "Use the Tags API to add a tag to a New Relic Browser application.", 
+            "title": "Objective"
+        }, 
+        {
+            "location": "/lab1-instructions/#instructions", 
+            "text": "Visit the New Relic GraphQL API Explorer:  https://api.newrelic.com/graphiql .  Select the training account\u2019s API key from the dropdown list near the top of the window.  In the left-hand pane, write an  entitySearch  query to find the  guid  of the Browser application named \u201cNew Relic Pet Clinic\u201d.  Hint (select text to reveal):   You are looking for an entity whose  name  is  New Relic Pet Clinic  in the  domain  of  BROWSER .  Click the  Execute query  button near the top of the window to execute your query. See the result in the right-hand pane.  If you get an error or do not see a  guid  in the result, return to Step 3 and try again. Otherwise, proceed to Step 6.  Write a  taggingAddTagsToEntity  mutation, passing the  guid  returned above, and adding a  tag  with a key of \u201ctraining\u201d and a value of your name.  Hint:   Tag values are an array, so you must surround them with square brackets.  Execute your mutation, ensuring that no errors are returned in the result.  Optional:  Write and execute an  entity  query to view the tags associated with the New Relic Pet Clinic Browser application.", 
+            "title": "Instructions"
+        }, 
+        {
+            "location": "/lab1-solution/", 
+            "text": "Lab 1: Solution\n\n\nentitySearch\n\n\n{\n  actor {\n    entitySearch(query: \nname = \nNew Relic Pet Clinic\n and domain = \nBROWSER\n) {\n      results {\n        entities {\n          accountId\n          guid\n          name\n          domain\n        }\n      }\n    }\n  }\n}\n\n\n\n\n\ntaggingAddTagsToEntity\n\n\nmutation {\n  taggingAddTagsToEntity(\n    guid: \nMXxC...U3Nw\n, \n    tags: {key: \ntraining\n, values: [ \nYour Name\n ]}) {\n    errors {\n      message\n      type\n    }\n  }\n}\n\n\n\n\n\nentity (view tags)\n\n\n{\n  actor {\n    entity(guid: \nMXxC...U3Nw\n) {\n      tags {\n        key\n        values\n      }\n    }\n  }\n}", 
+            "title": "Solution"
+        }, 
+        {
+            "location": "/lab1-solution/#lab-1-solution", 
+            "text": "", 
+            "title": "Lab 1: Solution"
+        }, 
+        {
+            "location": "/lab1-solution/#entitysearch", 
+            "text": "{\n  actor {\n    entitySearch(query:  name =  New Relic Pet Clinic  and domain =  BROWSER ) {\n      results {\n        entities {\n          accountId\n          guid\n          name\n          domain\n        }\n      }\n    }\n  }\n}", 
+            "title": "entitySearch"
+        }, 
+        {
+            "location": "/lab1-solution/#taggingaddtagstoentity", 
+            "text": "mutation {\n  taggingAddTagsToEntity(\n    guid:  MXxC...U3Nw , \n    tags: {key:  training , values: [  Your Name  ]}) {\n    errors {\n      message\n      type\n    }\n  }\n}", 
+            "title": "taggingAddTagsToEntity"
+        }, 
+        {
+            "location": "/lab1-solution/#entity-view-tags", 
+            "text": "{\n  actor {\n    entity(guid:  MXxC...U3Nw ) {\n      tags {\n        key\n        values\n      }\n    }\n  }\n}", 
+            "title": "entity (view tags)"
+        }, 
+        {
+            "location": "/lab2-instructions/", 
+            "text": "Lab 2: Using the Chart Builder\n\n\nObjective\n\n\nUse the chart builder to populate a dashboard.\n\n\nInstructions\n\n\n\n\nCreate a billboard chart that shows the number of visitors (sessions) to the New Relic Pet Clinic website in the past 30 minutes. \nHint (select text to reveal):\n \nSession\n is an attribute of the \nPageView\n event.\n\n\nClick \nAdd to Dashboard\n in the lower-right corner and add the chart to a new dashboard.\n\n\nCreate a bar chart that shows the 10 cities with the most sessions over the past 24 hours. Add the chart to the dashboard you created in Step 2. \nHint:\n \nUse \nFacet by\n to group sessions by city.\n\n\nCreate a line chart showing the average page load time (duration) for the Pet Clinic application over the past hour. Add the chart to your dashboard.\n\n\nCreate a pie chart showing the number of web transaction errors in the Pet Clinic application over the past 7 days, grouped by transaction name. Add the chart to your dashboard.\n\n\nOptional:\n Modify the line chart from Step 4 to show average page load time \nand\n average server-side (backend) duration.", 
+            "title": "Instructions"
+        }, 
+        {
+            "location": "/lab2-instructions/#lab-2-using-the-chart-builder", 
+            "text": "", 
+            "title": "Lab 2: Using the Chart Builder"
+        }, 
+        {
+            "location": "/lab2-instructions/#objective", 
+            "text": "Use the chart builder to populate a dashboard.", 
+            "title": "Objective"
+        }, 
+        {
+            "location": "/lab2-instructions/#instructions", 
+            "text": "Create a billboard chart that shows the number of visitors (sessions) to the New Relic Pet Clinic website in the past 30 minutes.  Hint (select text to reveal):   Session  is an attribute of the  PageView  event.  Click  Add to Dashboard  in the lower-right corner and add the chart to a new dashboard.  Create a bar chart that shows the 10 cities with the most sessions over the past 24 hours. Add the chart to the dashboard you created in Step 2.  Hint:   Use  Facet by  to group sessions by city.  Create a line chart showing the average page load time (duration) for the Pet Clinic application over the past hour. Add the chart to your dashboard.  Create a pie chart showing the number of web transaction errors in the Pet Clinic application over the past 7 days, grouped by transaction name. Add the chart to your dashboard.  Optional:  Modify the line chart from Step 4 to show average page load time  and  average server-side (backend) duration.", 
+            "title": "Instructions"
+        }, 
+        {
+            "location": "/lab2-result/", 
+            "text": "", 
+            "title": "Result"
+        }
+    ]
+}
