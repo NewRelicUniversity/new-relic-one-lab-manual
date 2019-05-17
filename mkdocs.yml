@@ -1,0 +1,12 @@
+site_name: New Relic One Lab Manual
+pages: 
+  - Introduction: index.md
+  - 'Lab 1: Using the Tags API': 
+    - Instructions: lab1-instructions.md
+    - Solution: lab1-solution.md
+  - 'Lab 2: Using the Chart Builder': 
+    - Instructions: lab2-instructions.md
+    - Result: lab2-result.md
+theme: readthedocs
+markdown_extensions: [ codehilite, smarty ]
+extra_css: [ css/extra.css ]
